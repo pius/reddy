@@ -6,6 +6,14 @@ describe "Triples" do
     f.subject.class.should == BNode
     # puts f.to_ntriples
   end
+  
+  it "should be equal when the subject, predicate, and object are the same" do
+    aleph = BNode.new
+    zeta = BNode.new
+    f = Triple.new(aleph, URIRef.new('http://xmlns.com/foaf/0.1/knows'), zeta)
+    g = Triple.new(aleph, URIRef.new('http://xmlns.com/foaf/0.1/knows'), zeta)
+    f.should == g
+  end
 
   it "should require that the subject is a URIRef or BNode" do
    lambda do

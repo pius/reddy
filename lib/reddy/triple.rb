@@ -44,6 +44,29 @@ module Reddy
     def is_type?
       @predicate.to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
     end
+    
+    ##
+    # Checks equality with another triple intended subject, predicate, and object.
+    #
+    # ==== Example
+    #   t = Triple.new(BNode.new, URIRef.new("http://xmlns.com/foaf/0.1/knows"), BNode.new) 
+    #   u = t
+    #  t == u => true
+    #
+    # @param [Triple] other the triple being tested for equality
+    #
+    # ==== Returns
+    #
+    # @return [Boolean] true or false depending on the equality
+    #
+    # @author Pius Uzamere
+    def ==(other)
+      return false unless other.is_a?(Triple)
+      return false unless self.subject == other.subject
+      return false unless self.predicate == other.predicate
+      return false unless self.object == other.object
+      return true
+    end
 
     protected
 
